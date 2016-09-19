@@ -6,12 +6,9 @@
 
 t = 0.2;
 
-pts = [
-	[0, 0], [t, 0], [t, (t - 1) / 2],
-	[3 - t, (t - 1) / 2], [3 - t, 0],
-	[3, 0], [3, -1], [3 - t, -1],
-	[3 - t, -(1 + t) / 2], [t, -(1 + t) / 2],
-	[t, -1], [0, -1]
-];
+g1 = cube(t, 1, 5).rotateZ(90);
+g2 = g1.clone().translate(0.5, 3 - t / 2, 2.5);
+g3 = cube(t, 3 - 2 * t, 5).translate(0.5, 1.5, 2.5);
 
-extrudeShape(polygon(pts), 5).rotateZ(90).display();
+g1.translate(0.5, t / 2, 2.5);
+g1.union(g2).union(g3).display();
